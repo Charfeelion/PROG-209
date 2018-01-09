@@ -1,0 +1,31 @@
+<html>
+<head>
+    <script>
+        for (var i = 0; i < 300; i++) {
+
+                if (i % 7 == 0) {
+                    console.log("Fuzz");
+                }
+                //if divisible by both 3 and 5
+                else if (i % 15 == 0) { 
+                    console.log("Fizzfuzz");
+                }
+                else if (i % 5 == 0) {
+                    console.log("Fizz");
+                }
+                else {
+                    console.log(i);
+                }
+                i++;
+            }
+
+        var string = "#######";
+        for (var i = 0; i < 7; i++) {
+            console.log(string);
+            string = string.slice(0, -1);
+        }
+
+    </script>
+    <title>Exercise 1</title>
+</head>
+</html>
