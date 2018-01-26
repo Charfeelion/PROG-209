@@ -1,0 +1,141 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML 5 Web Storage</title>
+    <link href="reset.css" type="text/css" rel="stylesheet" />
+    <link href="webStorage_Style.css" type="text/css" rel="stylesheet" />
+    <script>
+window.addEventListener("load",init);
+
+//------Global Variables-------\\
+var type; //initializes donut type
+var topping = ""; //initializes donut topping
+
+function init(){
+	if(typeof(Storage)!=="undefined"){
+
+	display();
+
+	var button=document.getElementById("button");
+	button.addEventListener("click", saveInfo);
+	}
+
+	else{
+	//old bowser
+	}
+}
+
+function saveInfo(){
+	var name = document.getElementById("orderName").value;
+	var qty = document.getElementById("qty").value;
+	if (qty > 10) { //if the user enters more than 10 donuts, automatically set their order to 10.
+	    qty = 10;
+	}
+	if (qty < 0) {  //if the user enters less than 0 donuts, automatically set to 0.
+	    qty = 0;
+	}
+	toppingSave();
+
+	localStorage.setItem("orderName",name);
+	localStorage.setItem("donutType", type);
+	localStorage.setItem("quantity", qty);
+	localStorage.setItem("toppings", topping);
+
+	display();
+
+}
+
+function display(){
+	var rightBox = document.getElementById("useroutput");
+	var name = localStorage.getItem("orderName");
+	var type = localStorage.getItem("donutType");
+	var qty = localStorage.getItem("quantity");
+	var topping = localStorage.getItem("toppings");
+
+	if(type == undefined){
+		document.getElementById("useroutput").innerHTML="";
+	}
+	else {
+	    document.getElementById("useroutput").innerHTML = "OUTPUT  <hr /><br /><br />Name: " + name + "<br /><br />  Donuts Types: " + type + "<br><br> Amount:" + qty + "<br><br> Toppings: " + topping;
+	}
+
+}
+
+function typeSave(){ //save data from radio buttons with all the same name
+    type = document.querySelector('input[name="type"]:checked').value;
+    console.log(type);
+}
+
+function toppingSave() {
+    var selected = document.getElementsByName('topping');
+    console.log(selected);
+    for (var i = 0; i < selected.length; i++) {
+        console.log(selected[i].value);
+        if (selected.checked) {
+            topping += selected[i].value;
+        }
+    }
+    console.log(topping);
+}
+
+
+    </script>
+
+</head>
+<body>
+    <div id="main">
+        <section id="userinput">
+            INPUT <br>
+            <hr />
+            <br><br>
+            <form>
+                <div>Order Name: <br><input type="text" id="orderName" size="20"></div>
+                <br>
+
+                <div>
+                    Types:
+                    <br>
+                    <input type="radio" name="type" value="Classic" onclick="typeSave()">Classic
+                    <br>
+                    <input type="radio" name="type" value="Bar" onclick="typeSave()">Bar
+                    <br>
+                    <input type="radio" name="type" value="Bear Claw" onclick="typeSave()">Bear Claw
+                </div>
+                <br>
+
+                <div>
+                    Quantity (Max 10):
+                    <br>
+                    <input id="qty" type="number">
+                </div>
+                <br>
+
+                <div>
+                    Toppings:
+                    <br>
+                    <input type="checkbox" name="topping" value="Sprinkles">Sprinkles
+                    <br>
+                    <input type="checkbox" name="topping" value="Frosting">Frosting
+                    <br>
+
+
+                </div>
+                <br>
+
+                <div>Additional Comments:<br /> <textarea id="type" rows="3"></textarea></div>
+                <br>
+                <div><input type="button" id="button" value="Save"></div>
+
+            </form>
+        </section>
+
+        <section id="useroutput">
+            OUTPUT
+            <hr>
+            <br><br>
+        </section>
+    </div>
+
+</body>
+</html>
