@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -6,78 +6,78 @@
     <link href="reset.css" type="text/css" rel="stylesheet" />
     <link href="webStorage_Style.css" type="text/css" rel="stylesheet" />
     <script>
-window.addEventListener("load",init);
+        window.addEventListener("load", init);
 
-//------Global Variables-------\\
-var type; //initializes donut type
-var topping = ""; //initializes donut topping
+        //------Global Variables-------\\
+        var type; //initializes donut type
+        var topping; //initializes donut topping
 
-function init(){
-	if(typeof(Storage)!=="undefined"){
+        function init() {
+            if (typeof (Storage) !== "undefined") {
 
-	display();
+                display();
 
-	var button=document.getElementById("button");
-	button.addEventListener("click", saveInfo);
-	}
+                var button = document.getElementById("button");
+                button.addEventListener("click", saveInfo);
+            }
 
-	else{
-	//old bowser
-	}
-}
-
-function saveInfo(){
-	var name = document.getElementById("orderName").value;
-	var qty = document.getElementById("qty").value;
-	if (qty > 10) { //if the user enters more than 10 donuts, automatically set their order to 10.
-	    qty = 10;
-	}
-	if (qty < 0) {  //if the user enters less than 0 donuts, automatically set to 0.
-	    qty = 0;
-	}
-	toppingSave();
-
-	localStorage.setItem("orderName",name);
-	localStorage.setItem("donutType", type);
-	localStorage.setItem("quantity", qty);
-	localStorage.setItem("toppings", topping);
-
-	display();
-
-}
-
-function display(){
-	var rightBox = document.getElementById("useroutput");
-	var name = localStorage.getItem("orderName");
-	var type = localStorage.getItem("donutType");
-	var qty = localStorage.getItem("quantity");
-	var topping = localStorage.getItem("toppings");
-
-	if(type == undefined){
-		document.getElementById("useroutput").innerHTML="";
-	}
-	else {
-	    document.getElementById("useroutput").innerHTML = "OUTPUT  <hr /><br /><br />Name: " + name + "<br /><br />  Donuts Types: " + type + "<br><br> Amount:" + qty + "<br><br> Toppings: " + topping;
-	}
-
-}
-
-function typeSave(){ //save data from radio buttons with all the same name
-    type = document.querySelector('input[name="type"]:checked').value;
-    console.log(type);
-}
-
-function toppingSave() {
-    var selected = document.getElementsByName('topping');
-    console.log(selected);
-    for (var i = 0; i < selected.length; i++) {
-        console.log(selected[i].value);
-        if (selected.checked) {
-            topping += selected[i].value;
+            else {
+                //old bowser
+            }
         }
-    }
-    console.log(topping);
-}
+
+        function saveInfo() {
+            var name = document.getElementById("orderName").value;
+            var qty = document.getElementById("qty").value;
+            var comments = document.getElementById("comments").value;
+            if (qty > 10) { //if the user enters more than 10 donuts, automatically set their order to 10.
+                qty = 10;
+            }
+            if (qty < 0) {  //if the user enters less than 0 donuts, automatically set to 0.
+                qty = 0;
+            }
+            toppingSave();
+
+            localStorage.setItem("orderName", name);
+            localStorage.setItem("donutType", type);
+            localStorage.setItem("quantity", qty);
+            localStorage.setItem("toppings", topping);
+            localStorage.setItem("comments", comments);
+
+            display();
+
+        }
+
+        function display() {
+            var rightBox = document.getElementById("useroutput");
+            var name = localStorage.getItem("orderName");
+            var type = localStorage.getItem("donutType");
+            var qty = localStorage.getItem("quantity");
+            var topping = localStorage.getItem("toppings");
+            var comments = localStorage.getItem("comments");
+
+            
+        
+                    document.getElementById("useroutput").innerHTML = "OUTPUT  <hr /><br /><br />Name: " + name + "<br /><br />  Donuts Types: " + type +
+                    "<br><br> Amount:" + qty + "<br><br> Toppings: " + topping + "<br><br> Comments: <br>" + comments;
+        }
+
+        function typeSave() {                                        //save data from radio buttons with all the same name
+            type = document.querySelector('input[name="type"]:checked').value;
+            console.log(type);
+        }
+
+        function toppingSave() {
+            topping = "";
+            var selected = document.getElementsByName('topping');   //create an array of all the checkboxes...
+            for (var i = 0; i < selected.length; i++) {             //...and loop through them
+                console.log(selected[i].value);
+                if (selected[i].checked) {                          //if it's checked, add it to our toppings string.
+                    topping += selected[i].value + ", ";
+                }
+            }
+            topping = topping.substring(0, (topping.length - 2)) //trim the string
+        }
 
 
     </script>
@@ -123,7 +123,7 @@ function toppingSave() {
                 </div>
                 <br>
 
-                <div>Additional Comments:<br /> <textarea id="type" rows="3"></textarea></div>
+                <div>Additional Comments:<br /> <textarea id="comments" rows="3"></textarea></div>
                 <br>
                 <div><input type="button" id="button" value="Save"></div>
 
