@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -30,6 +30,7 @@
             var name = document.getElementById("orderName").value;
             var qty = document.getElementById("qty").value;
             var comments = document.getElementById("comments").value;
+            var img = document.getElementById("donutImage");
             if (qty > 10) { //if the user enters more than 10 donuts, automatically set their order to 10.
                 qty = 10;
             }
@@ -37,6 +38,19 @@
                 qty = 0;
             }
             toppingSave();
+
+            img.style.opacity = 1;                  //fade out animation
+            var timer = setInterval(function () {
+                if (img.style.opacity > 0) {
+                    img.style.opacity -= 0.1;
+                }
+                else {
+                    img.style.opacity = 0;
+                    clearInterval(timer); 
+                }
+            }, 100);
+
+
 
             localStorage.setItem("orderName", name);
             localStorage.setItem("donutType", type);
@@ -56,10 +70,11 @@
             var topping = localStorage.getItem("toppings");
             var comments = localStorage.getItem("comments");
 
-            
-        
-                    document.getElementById("useroutput").innerHTML = "OUTPUT  <hr /><br /><br />Name: " + name + "<br /><br />  Donuts Types: " + type +
-                    "<br><br> Amount:" + qty + "<br><br> Toppings: " + topping + "<br><br> Comments: <br>" + comments;
+            if (type == "undefined") {  //in case type becomes undefined, set it to a blank space for aesthetic.
+                type = "";
+            }
+
+            document.getElementById("useroutput").innerHTML = "Your order...  <hr /><br /><br />Name: " + name + "<br /><br />  Donuts Types: " + type + "<br><br> Amount:" + qty + "<br><br> Toppings: " + topping + "<br><br> Comments: <br>" + comments;
         }
 
         function typeSave() {                                        //save data from radio buttons with all the same name
@@ -85,10 +100,11 @@
 </head>
 <body>
     <div id="main">
+
+        <div id="logo"></div>
+
         <section id="userinput">
-            INPUT <br>
-            <hr />
-            <br><br>
+
             <form>
                 <div>Order Name: <br><input type="text" id="orderName" size="20"></div>
                 <br>
@@ -118,7 +134,8 @@
                     <br>
                     <input type="checkbox" name="topping" value="Frosting">Frosting
                     <br>
-
+                    <input type="checkbox" name="topping" value="Bacon">Bacon
+                    <br>
 
                 </div>
                 <br>
@@ -126,15 +143,14 @@
                 <div>Additional Comments:<br /> <textarea id="comments" rows="3"></textarea></div>
                 <br>
                 <div><input type="button" id="button" value="Save"></div>
-
+                <div id="donutImage"></div>
             </form>
         </section>
 
         <section id="useroutput">
-            OUTPUT
-            <hr>
             <br><br>
         </section>
+
     </div>
 
 </body>

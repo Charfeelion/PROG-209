@@ -1,26 +1,55 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /* CSS Document */
 
-#main{
-width:750px; height:500px;
-margin:0 auto;	
+body {
+    background-color: #FF96DF;
+    font-family: Arial, Helvetica, sans-serif;
 }
-#userinput{
-	float:left;
-	margin-top:25px;
-	padding:20px;
-	background-color:#999966;
-	width:300px; height:500px;
-	}
 
+#main{
+    width:750px; height:500px;
+    margin:0 auto;	
+}
 
-#useroutput{
-	float:left;
-	margin-top:25px;
-	margin-left:20px;
-	padding:20px;
-	width:300px; height:500px;
-	background-color:#CCCCCC;
-	
-	}
+h1{
+    margin-top: 5%;
+    text-align: center;
+}
 
+#userinput {
+    /*float:left;*/
+    margin: 0 auto;
+    margin-top: 5%;
+    padding: 20px;
+    background-color: #FFFB96;
+    width: 500px;
+    height: 395px;
+}
+
+#useroutput {
+    /*float:left;*/
+    margin: 0 auto;
+    margin-top: 5%;
+    padding: 20px;
+    width: 700px;
+    height: 250px;
+    background-color: #D39DFF;
+}
+
+#logo {
+    background-image:url("images/logo.png");
+    height: 134px;
+    width: 541px;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+#donutImage {
+    width: 512px;
+    height: 512px;
+    background-image: url("images/donut.png");
+    position: absolute;
+    bottom: 35%;
+    right: 25%;
+    opacity: 0;
+}
