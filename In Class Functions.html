@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Function Example</title>
+    </head>
+    <body>
+        
+        <div id="message"></div>
+        
+        <script>
+            
+            //--------test 01--------\\
+            var msg = 'Sign up to receive our newsletter for 10% off!';
+
+            function updateMessage() {
+              var el = document.querySelector("#message");
+              el.textContent = "I am on fire, but a fire extinguisher is not necessary.";
+            }
+
+            updateMessage();
+            //--------end test 01--------\\
+            
+            
+            
+            
+            //--------test 02--------\\
+            function myFunction(p1, p2) {
+            console.log(p1*p2);
+            return p1 * p2;              // The function returns the product of p1 and p2
+            }
+
+            //When calling it give it some data
+
+            console.log(myFunction(10,5));
+            //--------end test 02--------\\
+            
+            
+            
+            //--------test 03--------\\
+            function getSize(width,height, depth, mass, accel){
+
+                var area = width*height;
+                var volume = width*height*depth;
+                var density = mass/volume;
+                var force = mass * accel;
+                var size = [area,volume,density,force];
+                return size;
+
+            }
+
+            var areaOne=getSize(3,2,3,2,4)[0];
+            var volumeOne=getSize(3,2,3,2,4)[1];
+            var densityOne=getSize(3,2,3,2,4)[2];
+            var forceOne=getSize(3,2,3,2,4)[3];
+            alert("Area is " + areaOne);
+            alert("Volume is " + volumeOne);
+            alert("Density is " + densityOne);
+            alert("Force is " + forceOne);
+
+            //--------end test 03--------\\
+            
+            
+            
+            //--------test 04 --------\\
+            
+            //console.log("Before function" + area(4,4)); 
+            //function will not work and throws an error because code
+            //runs from top to bottom. So if a function is called before it's creation, the function call
+            //throws an error. This is the same for declared functions for the same reason.
+            
+            var area=function(width, height){
+
+                return width*height;
+            }
+
+            var size=area(3,3); //call after function creation
+            console.log(size);
+            
+            //--------end test 04--------\\
+        </script>
+        
+    </body>
+</html>
