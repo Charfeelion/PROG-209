@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Planets</title>
+<style>
+    body{
+        background-image: url("images/background.jpg");
+    }
+    #main{
+        margin: 0 auto;
+        margin-top: 2%;
+        width: 15%;
+        height: auto;
+        border: 1px solid;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    .planet{
+        font-weight: bold;
+        font-size: 120%;
+        color: aqua;
+    }
+
+</style>
+</head>
+
+    <body>
+
+        <div id="main"><br></div> 
+
+        <script>
+            var planetNames = ["Jupiter", "Venus", "Saturn", "Mars", "Pluto"];
+            var distancesFromEarth = [5.2, 0.72, 9.5, 1.5, 39];
+            var sunnyInAugust = [false, true, false, true, true];
+            var main = document.getElementById("main");
+            var planetMain = document.getElementById("planet");
+
+            for(var i = 0; i < planetNames.length; i++){
+                let planet = (planetNames[i]);
+                let distance = (distancesFromEarth[i]);
+                let sunny = (sunnyInAugust[i]);
+                main.innerHTML += "<div class='planet'>" + planet +"</div>" + "<br>Average distance from Earth in AU:&nbsp" + distance + "<br>Sunny in August:&nbsp" + sunny + "<br><br><hr><br><br>";
+            }
+
+        </script>
+
+    </body>
+</html>
