@@ -30,19 +30,6 @@ body{
     height: 17%;
 }
 
-#button-wrapper{
-    float: right;
-    position: relative;
-    right: 25%;
-    border: solid 1px black;
-    width: 300px;
-    height: 100%;
-}
-
-#button-wrapper button{
-    border-style: none;
-}
-
 footer{
     width: inherit;
     height: 100px;
